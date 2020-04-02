@@ -1,31 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_03_ex2;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public class LinearNode<T> {
-    /**
-     * reference to next node in list
-     */
-    private LinearNode<T> next;
     
-    /**
-     * Element stored at this node
-     */
+    private LinearNode<T> next;
     private T element;
     
     /**
      * Creates an empty node
      */
     public LinearNode(){
-        next = null;
-        element = null;
+        this.next = null;
+        this.element = null;
     }
     
     /**
@@ -33,8 +18,8 @@ public class LinearNode<T> {
      * @param elem element to be stored
      */
     public LinearNode(T elem){
-        next = null;
-        element = null;
+        this.next = null;
+        this.element = null;
     }
 
     /**
@@ -42,7 +27,7 @@ public class LinearNode<T> {
      * @return LinearNode<T> reference to next node
      */
     public LinearNode<T> getNext() {
-        return next;
+        return this.next;
     }
 
     /**
@@ -58,7 +43,7 @@ public class LinearNode<T> {
      * @return T element stored at this node
      */
     public T getElement() {
-        return element;
+        return this.element;
     }
 
     /**

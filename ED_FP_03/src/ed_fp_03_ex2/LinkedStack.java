@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_03_ex2;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public class LinkedStack<T> {
     private int size;
     private LinearNode<T> first;
@@ -78,7 +69,7 @@ public class LinkedStack<T> {
         }
         
         //É retornado o elemento
-        return first.getElement();
+        return this.first.getElement();
     }
     
     /** Returns true if this stack contains no elements.
@@ -92,7 +83,7 @@ public class LinkedStack<T> {
      * @return int number of elements in this stack
      */
     public int size(){
-        return size;
+        return this.size;
     }
 
     /** Returns a string representation of this stack.
