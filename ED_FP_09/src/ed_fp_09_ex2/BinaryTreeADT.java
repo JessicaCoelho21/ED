@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ed_fp_09_ex1;
+package ed_fp_09_ex2;
 
 import java.util.Iterator;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public interface BinaryTreeADT<T> {
+    
     /**
      * Returns a reference to the root element
      * @return a reference to the root
@@ -43,7 +35,7 @@ public interface BinaryTreeADT<T> {
      * binaru tree. Throws an exception if the specified element is not found
      * @param targetElement the element being sought in the tree
      * @return a reference to the specified element
-     * @throws ed_fp_09_ex1.ElementDoesntExistException
+     * @throws ed_fp_09_ex2.ElementDoesntExistException
      */
     public T find(T targetElement) throws ElementDoesntExistException;
     

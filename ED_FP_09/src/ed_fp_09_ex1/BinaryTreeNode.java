@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_09_ex1;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public class BinaryTreeNode<T> {
     protected T element;
     protected BinaryTreeNode<T> left, right;
@@ -21,6 +12,38 @@ public class BinaryTreeNode<T> {
         this.element = obj;
         this.left = null;
         this.right = null;
+    }
+
+    /**
+     * Método que obtém o nó esquerdo do atual
+     * @return 
+     */
+    public BinaryTreeNode<T> getLeft() {
+        return this.left;
+    }
+
+    /**
+     * Método que atribui um nó esquerdo ao nó atual
+     * @param left 
+     */
+    public void setLeft(BinaryTreeNode<T> left) {
+        this.left = left;
+    }
+
+    /**
+     * Método que obtém o nó direito do atual
+     * @return 
+     */
+    public BinaryTreeNode<T> getRight() {
+        return right;
+    }
+
+    /**
+     * Método que atribui um nó direito ao nó atual
+     * @param right
+     */
+    public void setRight(BinaryTreeNode<T> right) {
+        this.right = right;
     }
     
     /**
