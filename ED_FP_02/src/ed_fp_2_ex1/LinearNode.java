@@ -1,4 +1,4 @@
-package ed_fp_2;
+package ed_fp_2_ex1;
 
 public class LinearNode<T> {
     private LinearNode<T> next;
