@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_10_ex1;
 
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public class LinkedBinaryTree<T> implements BinaryTreeADT<T>{
     protected int count;
     protected BinaryTreeNode<T> root;
@@ -31,19 +20,31 @@ public class LinkedBinaryTree<T> implements BinaryTreeADT<T>{
      */
     public LinkedBinaryTree(T element) {
         this.count = 1;
-        this.root = new BinaryTreeNode<T> (element);
+        this.root = new BinaryTreeNode<> (element);
     }
 
+    /**
+     * Returns a reference to the root element
+     * @return a reference to the root
+     */
     @Override
     public T getRoot() {
-        return (T) this.root;
+        return (T)this.root;
     }
 
+    /**
+     * Returns true if this binary tree is empty and false otherwise
+     * @return true if this binary tree is empty
+     */
     @Override
     public boolean isEmpty() {
         return this.count == 0;
     }
-
+    
+    /**
+     * Returns the number os elements in this binary tree
+     * @return the integer number of elements in this tree
+     */
     @Override
     public int size() {
         return this.count;
@@ -106,7 +107,7 @@ public class LinkedBinaryTree<T> implements BinaryTreeADT<T>{
     @Override
     public Iterator<T> interatorInOrder() {
         //Ter array em lista ligada não importa, desde que tenhamos um método para que a lista não se ordene
-        ArrayUnorderedList<T> tempList = new ArrayUnorderedList<T>();
+        ArrayUnorderedList<T> tempList = new ArrayUnorderedList<>();
         inorder(this.root, tempList);
         
         return tempList.iterator();
@@ -187,21 +188,19 @@ public class LinkedBinaryTree<T> implements BinaryTreeADT<T>{
         ArrayUnorderedList<T> tempList = new ArrayUnorderedList<>();
         
         try {
-            levelorder(root, tempList);
-        } 
-        
-        catch (EmptyCollectionException ex) {
-            Logger.getLogger(LinkedBinaryTree.class.getName()).log(Level.SEVERE, null, ex);
+            levelorder(this.root, tempList);
+        } catch (EmptyCollectionException ex) {
+            System.out.println("Empty Collection");
         }
 
         return tempList.iterator();
     }
     
-     /**
+    /**
      * Executa uma passagem de levelorder recursiva
-     *
      * @param node no
      * @param tempList lista temporaria
+     * @throws ed_fp_10_ex1.EmptyCollectionException
      */
     protected void levelorder(BinaryTreeNode<T> node, UnorderedListADT<T> tempList) throws EmptyCollectionException {
         LinkedQueue<BinaryTreeNode<T>> queue = new LinkedQueue();

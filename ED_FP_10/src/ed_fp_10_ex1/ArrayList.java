@@ -1,37 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_10_ex1;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public class ArrayList<T> implements ListADT<T>{
-    /**
-     * Array de elementos genéricos para representar o ArrayList
-     */
     protected T[] array;
-
-    /**
-     * int que representa a próxima posição disponível no ArrayList
-     */
     protected int rear;
-
-    /**
-     * constante para representar a capacidade default do ArrayList
-     */
     private final int DEFAULT_CAPACITY = 10;
 
     /**
      * Cria uma lista vazia usando a capacidade especificada
-     *
      * @param tam
      */
     public ArrayList(int tam) {
@@ -49,7 +28,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Remove e retorna o primeiro elemento desta lista.
-     *
      * @return the first element from this list
      */
     @Override
@@ -72,7 +50,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Remove e retorna o último elemento desta lista.
-     *
      * @return the last element from this list
      */
     @Override
@@ -80,15 +57,13 @@ public class ArrayList<T> implements ListADT<T>{
         if (this.rear == 0) {
             try {
                 throw new EmptyCollectionException();
-            } 
-            
-            catch (EmptyCollectionException ex) {
+            } catch (EmptyCollectionException ex) {
                 ex.getMessage();
             }
         }
         
         T k = this.last();
-        this.array[rear - 1] = null;
+        this.array[this.rear - 1] = null;
         this.rear--;
         
         return k;
@@ -96,7 +71,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Remove e retorna o elemento especificado dessa lista.
-     *
      * @param element the element to be removed from the list
      * @return the removed element
      */
@@ -128,7 +102,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Retorna uma referência ao primeiro elemento nesta lista.
-     *
      * @return a reference to the first element in this list
      */
     @Override
@@ -138,17 +111,15 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Retorna uma referência ao último elemento nesta lista.
-     *
      * @return a reference to the last element in this list
      */
     @Override
     public T last() {
-        return this.array[rear - 1];
+        return this.array[this.rear - 1];
     }
 
     /**
      * Retornará true se esta lista contiver o elemento de destino especificado.
-     *
      * @param target the target that is being sought in the list
      * @return true if the list contains this element
      */
@@ -165,7 +136,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Retornará true se esta lista não contiver elementos.
-     *
      * @return true if this list contains no elements
      */
     @Override
@@ -175,7 +145,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Retorna o número de elementos nesta lista.
-     *
      * @return the integer representation of number of elements in this list
      */
     @Override
@@ -185,7 +154,6 @@ public class ArrayList<T> implements ListADT<T>{
 
     /**
      * Retorna um iterador para os elementos nesta lista.
-     *
      * @return an iterator over the elements in this list
      */
     @Override
@@ -197,27 +165,20 @@ public class ArrayList<T> implements ListADT<T>{
      * Class that represents a Iterator
      */
     private class MeuIterador implements Iterator<T> {
-
         private final int expectedModCount;
         private boolean okToRemove;
-
-        /**
-         * int that represents the position of the iterator
-         */
         int cursor = 0;
 
         /**
          * Creates an Iterator.
-         *
          */
         MeuIterador() {
             this.expectedModCount = size();
-            okToRemove = false;
+            this.okToRemove = false;
         }
 
         /**
          * Verifies if there is a element next to the current
-         *
          * @return true if the element exists
          */
         @Override
@@ -226,12 +187,11 @@ public class ArrayList<T> implements ListADT<T>{
                 throw new ConcurrentModificationException("Lista incompativel!");
             }
 
-            return cursor != size();
+            return this.cursor != size();
         }
 
         /**
          * Moves the iterator to the next position.
-         *
          * @return the previous position the cursor was
          */
         @Override
@@ -240,9 +200,9 @@ public class ArrayList<T> implements ListADT<T>{
                 throw new NoSuchElementException();
             }
 
-            okToRemove = true;
+            this.okToRemove = true;
 
-            return array[cursor++];
+            return array[this.cursor++];
         }
     }
 }

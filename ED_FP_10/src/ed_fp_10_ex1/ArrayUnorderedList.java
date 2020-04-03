@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_10_ex1;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedListADT<T> {
     /**
      * Cria uma lista vazia usando o tamanho especificado.
-     *
      * @param tam
      */
     public ArrayUnorderedList(int tam) {
@@ -28,16 +18,13 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
 
     /**
      * Adiciona o elemento especificado à frente da lista.
-     *
      * @param element
      */
     @Override
     public void addToFront(T element) {
         if (isEmpty()) {
             this.array[0] = element;
-        } 
-        
-        else {
+        } else {
             if (this.rear == this.array.length) {
                 this.createArray();
             }
@@ -53,17 +40,13 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
 
     /**
      * Adiciona o elemento especificado na parte traseira da lista.
-     *
      * @param element
      */
     @Override
     public void addToRear(T element) {
         if (isEmpty()) {
             this.array[0] = element;
-        } 
-        
-        else {
-
+        } else {
             if (this.rear == this.array.length) {
                 this.createArray();
             }
@@ -76,7 +59,6 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
     /**
      * Adiciona o elemento especificado após o elemento de destino especificado.
      * Lança uma ElementNotFoundException se o destino não for encontrado.
-     *
      * @param element
      * @param target
      */
@@ -89,7 +71,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
                 i++;
             }
             
-            for (int j = rear; j > i + 1; j--) {
+            for (int j = this.rear; j > i + 1; j--) {
                 this.array[j] = this.array[j - 1];
             }
 
@@ -110,5 +92,4 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         
         this.array = array2;
     }
-
 }

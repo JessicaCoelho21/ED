@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_10_ex1;
 
 import java.util.Iterator;
 
-/**
- *
- * @author Jéssica Beatriz
- */
 public interface BinaryTreeADT<T>{
+    
     /**
      * Returns a reference to the root element
      * @return a reference to the root

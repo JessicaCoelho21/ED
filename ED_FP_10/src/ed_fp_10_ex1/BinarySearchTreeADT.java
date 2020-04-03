@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_10_ex1;
 
-/**
- * BinarySearchTreeADT defines the interface to a binary search tree.
- */
 public interface BinarySearchTreeADT<T> extends BinaryTreeADT<T> {
     
     /**
      * Adds the specified element to the proper location in this tree.
      * @param element the element to be added to this tree
      */
-    public void addElemet(T element);
+    public void addElement(T element);
     
     /**
      * Removes all occurences of the specified element from this tree

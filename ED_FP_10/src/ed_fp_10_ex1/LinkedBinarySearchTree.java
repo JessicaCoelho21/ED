@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ed_fp_10_ex1;
 
-/**
- *
- * @author Jéssica Beatriz
- */
+import java.util.Iterator;
+
 public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements BinarySearchTreeADT<T>{
     
     /**
@@ -33,7 +26,7 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      * @param element the element to be added to the binary search tree
      */
     @Override
-    public void addElemet(T element) {
+    public void addElement(T element) {
         BinaryTreeNode<T> temp = new BinaryTreeNode<T> (element);
         Comparable<T> comparableElement = (Comparable<T>) element;
         
@@ -295,7 +288,15 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      */
     @Override
     public void removeAllOccurrences(T targetElement) throws ElementDoesntExistException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        removeElement(targetElement);
+
+        try {
+            while (contains( (T) targetElement)){
+                removeElement(targetElement);
+            }
+	} catch (Exception ElementNotFoundException){
+            System.out.println("O elemento não existe!");
+	}
     }
     
     /**
@@ -306,7 +307,31 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      */
     @Override
     public T removeMin() throws EmptyCollectionException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T result = null;
+
+        if (isEmpty()) {
+            throw new EmptyCollectionException("Empty collection");
+        } else {
+            if (this.root.left == null) {
+                result = this.root.element;
+                this.root = this.root.right;
+            } else {
+                BinaryTreeNode<T> parent = this.root;
+                BinaryTreeNode<T> current = this.root.left;
+                
+                while (current.left != null) {
+                    parent = current;
+                    current = current.left;
+                }
+                
+                result = current.element;
+                parent.left = current.right;
+            }
+
+            this.count--;
+        }
+
+        return result;
     }
 
     /**
@@ -318,7 +343,31 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      */
     @Override
     public T removeMax() throws EmptyCollectionException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T result = null;
+
+        if (isEmpty()) {
+            throw new EmptyCollectionException("binary tree");
+        } else {
+            if (this.root.right == null) {
+                result = this.root.element;
+                this.root = this.root.left;
+            } else {
+                BinaryTreeNode<T> parent = this.root;
+                BinaryTreeNode<T> current = this.root.right;
+
+                while (current.right != null) {
+                    parent = current;
+                    current = current.right;
+                }
+
+                result = current.element;
+                parent.right = current.left;
+            }
+
+            this.count--;
+        }
+
+        return result;
     }
 
     /**
@@ -331,7 +380,21 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      */
     @Override
     public T findMin() throws EmptyCollectionException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T result = null;
+
+        if (isEmpty()) {
+            throw new EmptyCollectionException("binary tree");
+        } else {
+            BinaryTreeNode<T> current = this.root;
+
+            while (current.left != null) {
+                current = current.left;
+            }
+
+            result = current.element;
+        }
+
+        return result;
     }
 
     /**
@@ -343,6 +406,68 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T> implements Bi
      */
     @Override
     public T findMax() throws EmptyCollectionException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T result = null;
+
+        if (isEmpty()) {
+            throw new EmptyCollectionException("binary tree");
+        } else {
+            BinaryTreeNode<T> current = this.root;
+
+            while (current.right != null) {
+                current = current.right;
+            }
+
+            result = current.element;
+        } 
+
+        return result;
+    }
+    
+    /**
+     * Executa uma passagem de levelorder nesta árvore binária ao chamar um
+     * método de classificação levelorder e recursivo que começa na raiz.
+     * @return iterador
+     */
+    @Override
+    public Iterator<T> iteratorLevelOrder() {
+        ArrayUnorderedList<T> tempList = new ArrayUnorderedList<>();
+        
+        try {
+            levelorder(root, tempList);
+        } catch (EmptyCollectionException ex) {
+            System.out.println("Empty collection");
+        }
+
+        return tempList.iterator();
+    }
+
+    /**
+     * Executa uma passagem de levelorder recursiva
+     * @param node nó
+     * @param tempList lista temporaria
+     * @throws ed_fp_10_ex1.EmptyCollectionException
+     */
+    @Override
+    protected void levelorder(BinaryTreeNode<T> node, UnorderedListADT<T> tempList) throws EmptyCollectionException {
+        LinkedQueue<BinaryTreeNode<T>> queue = new LinkedQueue();
+        
+        if (node != null) {
+            queue.enqueue(node);
+            
+            while (!queue.isEmpty()) {
+                BinaryTreeNode<T> tempNode = queue.dequeue();
+                tempList.addToRear(tempNode.element);
+                
+                if (tempNode.numChildren() > 0) {
+                    if (tempNode.left != null) {
+                        queue.enqueue(tempNode.left);
+                    }
+                    
+                    if (tempNode.right != null) {
+                        queue.enqueue(tempNode.right);
+                    }
+                }
+            }
+        }
     }
 }
